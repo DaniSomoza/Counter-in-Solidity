@@ -9,13 +9,22 @@ import { Typography } from "@mui/material";
 import ContractPage from "./routes/ContractPage";
 
 function App() {
-  const { metamaskInstance, isMetamaskDefined, userAddress } = useMetamask();
+  const {
+    metamaskInstance,
+    isMetamaskDefined,
+    userAddress,
+    userAddressDetailsUrl,
+  } = useMetamask();
 
   return (
     <AppContainer>
-      <Header userAddress={userAddress} isMetamaskDefined={isMetamaskDefined} />
+      <Header
+        userAddressDetailsUrl={userAddressDetailsUrl}
+        userAddress={userAddress}
+        isMetamaskDefined={isMetamaskDefined}
+      />
 
-      <Typography variant="h2" component="h1" gutterBottom>
+      <Typography component="h1" variant="h2" gutterBottom>
         Counter in Solidity
       </Typography>
 
@@ -30,6 +39,7 @@ function App() {
             />
           }
         />
+
         <Route
           path={DEPLOY_CONTRACT_PATH}
           element={
@@ -40,6 +50,7 @@ function App() {
             />
           }
         />
+
         {/* Unknown routes redirects to the home page */}
         <Route path="*" element={<Navigate to={HOME_PATH} replace={true} />} />
       </Routes>
@@ -50,7 +61,7 @@ function App() {
 export default App;
 
 const AppContainer = styled("div")({
-  margin: "0 auto",
+  margin: "82px auto 0 auto",
   maxWidth: "700px",
   textAlign: "center",
 });

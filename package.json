@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "deploy": "npx hardhat run scripts/deploy.js",
+    "deploy:Counter": "npx hardhat run scripts/deploy.js",
+    "prestart": "npx hardhat compile",
+    "prebuild": "npx hardhat compile",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

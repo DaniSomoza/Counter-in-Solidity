@@ -5,7 +5,7 @@ function Loader({ height, children }) {
   return (
     <LoaderContainer height={height}>
       <CircularProgress />
-      {children}
+      {children ? <LabelContainer>{children}</LabelContainer> : null}
     </LoaderContainer>
   );
 }
@@ -21,3 +21,7 @@ const LoaderContainer = styled("div", {
   height: props.height,
   flexDirection: "column",
 }));
+
+const LabelContainer = styled("div")({
+  marginTop: "16px",
+});

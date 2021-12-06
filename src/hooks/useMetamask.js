@@ -37,10 +37,13 @@ function useMetamask() {
   const isMetamaskDefined =
     metamaskInstance?.currentProvider.isMetaMask && !!userAddress;
 
+  const userAddressDetailsUrl = `${process.env.REACT_APP_ETHERSCAN_URL}/address/${userAddress}`;
+
   return {
     metamaskInstance,
     userAddress,
     isMetamaskDefined,
+    userAddressDetailsUrl,
   };
 }
 
