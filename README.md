@@ -1,6 +1,6 @@
 # Basic Example of a Counter in Solidity and React
 
-- [ ] Actualizar el Readme.md
+- [ ] Actualizar el Readme.md (Descripción, imágenes & scripts)
 - [ ] Deploy en Github Pages
 - [ ] Visual Badge para las confirmaciones
 - [ ] Mostrar los Contratos del usuario

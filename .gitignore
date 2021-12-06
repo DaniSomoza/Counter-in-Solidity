@@ -6,7 +6,6 @@ node_modules
 # artifacts solidity
 src/artifacts
 src/cache
-src/build-info
 
 # testing
 /coverage
