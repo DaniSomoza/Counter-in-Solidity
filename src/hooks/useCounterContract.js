@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import CounterContractJSON from "../artifacts/contracts/Counter.sol/Counter.json";
+import CounterContractJSON from "../artifacts/src/contracts/Counter.sol/Counter.json";
 
 function useCounterContract(
   metamaskInstance,
