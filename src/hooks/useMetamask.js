@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Web3 from "web3";
 
+const RINKEBY_CHAIN_ID = "0x4";
+
 function useMetamask() {
   const [metamaskInstance, setMetamaskInstance] = useState();
   const [userAddress, setUserAddress] = useState();
@@ -10,8 +12,16 @@ function useMetamask() {
       return;
     }
 
+    // connect metamask
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
+      params: [{ chainId: RINKEBY_CHAIN_ID }],
+    });
+
+    // select correct chain
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: RINKEBY_CHAIN_ID }],
     });
 
     const userAddress = accounts[0];
@@ -27,6 +37,16 @@ function useMetamask() {
         setUserAddress(userAddress[0]);
       });
     });
+
+    metamaskInstance.currentProvider.on("disconnect", () => {
+      setUserAddress();
+      setMetamaskInstance();
+    });
+
+    return () => {
+      setUserAddress();
+      setMetamaskInstance();
+    };
   }, []);
 
   // Initialize Metamask instance if its present in the browser
