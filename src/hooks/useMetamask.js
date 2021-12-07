@@ -7,11 +7,11 @@ function useMetamask() {
 
   // Initialize Metamask instance if its present in the browser
   useEffect(() => {
-    if (!window?.web3?.currentProvider) {
+    if (!window.ethereum) {
       return;
     }
 
-    const metamaskInstance = new Web3(window.web3.currentProvider);
+    const metamaskInstance = new Web3(window.ethereum);
 
     setMetamaskInstance(metamaskInstance);
   }, []);
