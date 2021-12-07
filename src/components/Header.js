@@ -9,8 +9,14 @@ import IosShareIcon from "@mui/icons-material/IosShare";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 import AddressLabel from "./AddressLabel";
+import Button from "./Button";
 
-function Header({ userAddress, userAddressDetailsUrl, isMetamaskDefined }) {
+function Header({
+  userAddress,
+  userAddressDetailsUrl,
+  isMetamaskDefined,
+  connectToMetamask,
+}) {
   return (
     <HeaderContainer>
       <StyledToolbar>
@@ -49,7 +55,7 @@ function Header({ userAddress, userAddressDetailsUrl, isMetamaskDefined }) {
             </Stack>
           </Typography>
         ) : (
-          "Install Metamask First TODO: LINK"
+          <Button onClick={connectToMetamask}>Connect To Metamask</Button>
         )}
       </StyledToolbar>
     </HeaderContainer>

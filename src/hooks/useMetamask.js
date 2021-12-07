@@ -1,38 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Web3 from "web3";
 
 function useMetamask() {
   const [metamaskInstance, setMetamaskInstance] = useState();
   const [userAddress, setUserAddress] = useState();
 
-  // Initialize Metamask instance if its present in the browser
-  useEffect(() => {
+  const connectToMetamask = useCallback(async () => {
     if (!window.ethereum) {
       return;
     }
 
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    const userAddress = accounts[0];
+
     const metamaskInstance = new Web3(window.ethereum);
 
     setMetamaskInstance(metamaskInstance);
-  }, []);
+    setUserAddress(userAddress);
 
-  // Load current user address and subscribe to accountsChanged event
-  useEffect(() => {
-    async function loadUserAccount() {
+    // subscribe to accountsChanged event to update the current user address
+    metamaskInstance.currentProvider.on("accountsChanged", () => {
       metamaskInstance.eth.getAccounts().then((userAddress) => {
         setUserAddress(userAddress[0]);
       });
-    }
+    });
+  }, []);
 
-    if (metamaskInstance) {
-      loadUserAccount();
-
-      // subscribe to accountsChanged event to update the current user address
-      metamaskInstance.currentProvider.on("accountsChanged", () => {
-        loadUserAccount();
-      });
-    }
-  }, [metamaskInstance]);
+  // Initialize Metamask instance if its present in the browser
+  useEffect(() => {
+    connectToMetamask();
+  }, [connectToMetamask]);
 
   const isMetamaskDefined =
     metamaskInstance?.currentProvider.isMetaMask && !!userAddress;
@@ -44,6 +44,7 @@ function useMetamask() {
     userAddress,
     isMetamaskDefined,
     userAddressDetailsUrl,
+    connectToMetamask,
   };
 }
 

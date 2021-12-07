@@ -14,6 +14,7 @@ function App() {
     isMetamaskDefined,
     userAddress,
     userAddressDetailsUrl,
+    connectToMetamask,
   } = useMetamask();
 
   return (
@@ -22,6 +23,7 @@ function App() {
         userAddressDetailsUrl={userAddressDetailsUrl}
         userAddress={userAddress}
         isMetamaskDefined={isMetamaskDefined}
+        connectToMetamask={connectToMetamask}
       />
 
       <Typography component="h1" variant="h2" gutterBottom>
