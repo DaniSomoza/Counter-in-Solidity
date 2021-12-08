@@ -43,6 +43,8 @@ jobs:
           API_URL: ${{ secrets.API_URL }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REACT_APP_CONTRACT_ADDRESS: ${{ secrets.REACT_APP_CONTRACT_ADDRESS }}
+          REACT_APP_CONTRACT_REGISTRY_ADDRESS: ${{ secrets.REACT_APP_CONTRACT_REGISTRY_ADDRESS }}
+          CONTRACT_REGISTRY: ${{ secrets.CONTRACT_REGISTRY }}
 
       - name: Deploy to Github pages
         uses: JamesIves/github-pages-deploy-action@4.1.7

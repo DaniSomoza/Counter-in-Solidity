@@ -21,7 +21,12 @@ function AppMenuDrawer({ isOpen, contracts, setIsMenuOpen }) {
         {contracts.map((contractAddress) => {
           return (
             <AddressContainer key={contractAddress}>
-              <AddressLabel address={contractAddress} />{" "}
+              <AddressLabel
+                ariaLabel={"contract user address"}
+                address={contractAddress}
+                etherscanLink={`${process.env.REACT_APP_ETHERSCAN_URL}/address/${contractAddress}`}
+                iconSize="small"
+              />
               <StyledInternalLink
                 onClick={() => {
                   setIsMenuOpen(false);
@@ -52,9 +57,11 @@ const DrawerContainer = styled("div")({
 const AddressContainer = styled("div")({
   display: "flex",
   justifyContent: "space-evenly",
-  padding: "8px 0",
+  padding: "8px 12px",
+  alignItems: "center",
 });
 
 const StyledInternalLink = styled(Link)({
+  fontSize: "12px",
   color: "rgb(102, 178, 255);",
 });
