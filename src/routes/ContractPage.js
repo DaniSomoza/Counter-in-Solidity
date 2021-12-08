@@ -4,12 +4,7 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import IconButton from "@mui/material/IconButton";
-import Stack from "@mui/material/Stack";
 import { styled } from "@mui/system";
-import IosShareIcon from "@mui/icons-material/IosShare";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 import { DEPLOY_CONTRACT_PATH } from "./routes";
 import useCounterContract from "../hooks/useCounterContract";
@@ -104,40 +99,13 @@ function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
 
                 {/* Contract Address */}
                 <Typography component={"h3"} variant={"h6"} gutterBottom>
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="center"
-                    spacing={2}
-                    component="span"
-                  >
-                    <AddressLabel address={contractAddress} />{" "}
-                    <Tooltip title="Show contract details on Etherscan">
-                      <IconButton
-                        color="primary"
-                        component="a"
-                        href={contractDetailsUrl}
-                        aria-label="Show contract details on Etherscan"
-                        target="_blank"
-                        rel="noopener"
-                        style={{ marginLeft: 0 }}
-                      >
-                        <IosShareIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Copy contract address to clipboard">
-                      <IconButton
-                        color="primary"
-                        aria-label="Copy contract address to clipboard"
-                        style={{ marginLeft: 0 }}
-                        onClick={() =>
-                          navigator.clipboard.writeText(contractAddress)
-                        }
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Stack>
+                  <AddressLabel
+                    address={contractAddress}
+                    ariaLabel="contract address"
+                    etherscanLink={contractDetailsUrl}
+                    showCopyIntoClipboardButton
+                    iconSize="small"
+                  />
                 </Typography>
 
                 {/* Current Counter State */}
@@ -173,6 +141,7 @@ const StyledText = styled(Typography)({
 });
 
 const StyledCounterContainer = styled(Paper)({
+  textAlign: "center",
   margin: "24px auto",
   padding: 16,
 });

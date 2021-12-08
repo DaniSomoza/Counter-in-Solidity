@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
@@ -21,7 +22,7 @@ function ContractEvents({ pastEvents, newEvents }) {
             <TableCell align="center">Method</TableCell>
             <TableCell align="center">User</TableCell>
             <TableCell align="center">Value</TableCell>
-            <TableCell align="center">Transaction</TableCell>
+            <TableCell align="left">Transaction</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -38,13 +39,23 @@ function ContractEvents({ pastEvents, newEvents }) {
                 {LabelByMethod[event.returnValues.eventType]}
               </TableCell>
               <TableCell align="center">
-                <AddressLabel address={event.returnValues.userAddress} />
+                <AddressLabel
+                  address={event.returnValues.userAddress}
+                  ariaLabel={"user address"}
+                  etherscanLink={`${process.env.REACT_APP_ETHERSCAN_URL}/address/${event.returnValues.userAddress}`}
+                  iconSize="small"
+                />
               </TableCell>
               <TableCell align="center">
-                {event.returnValues.counter || <UnknownValue />}
+                {event.returnValues.counter || <PendingValue />}
               </TableCell>
               <TableCell align="center">
-                <AddressLabel address={event.transactionHash} />
+                <AddressLabel
+                  address={event.transactionHash}
+                  ariaLabel={"Counter transaction"}
+                  etherscanLink={`${process.env.REACT_APP_ETHERSCAN_URL}/tx/${event.transactionHash}`}
+                  iconSize="small"
+                />
               </TableCell>
             </TableRow>
           ))}
@@ -77,14 +88,14 @@ const ResetLabel = styled("span")(({ theme }) => ({
   borderRadius: "4px",
 }));
 
-function UnknownValue() {
-  return <UnknownValueLabel>Unknown</UnknownValueLabel>;
+function PendingValue() {
+  return <PendingValueLabel fontSize="small">Pending...</PendingValueLabel>;
 }
 
-const UnknownValueLabel = styled("span")(({ theme }) => ({
-  backgroundColor: theme.palette.warning.main,
+const PendingValueLabel = styled(Typography)(({ theme }) => ({
+  backgroundColor: theme.palette.warning.light,
   color: theme.palette.warning.contrastText,
-  padding: "4px  8px",
+  padding: "4px  6px",
   borderRadius: "4px",
 }));
 

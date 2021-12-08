@@ -25,6 +25,7 @@ function useContractDeployment(
           from: userAddress,
         })
         .on("error", function (error) {
+          // TODO: Add deploy contract error
           console.log("Error: ", error);
         })
         .on("transactionHash", function (transactionDeploymentHash) {

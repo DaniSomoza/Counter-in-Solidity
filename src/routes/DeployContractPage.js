@@ -7,6 +7,7 @@ import contractFile from "../contracts/Counter.sol";
 import useContractDeployment from "../hooks/useContractDeployment";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
+import AddressLabel from "../components/AddressLabel";
 
 function DeployContractPage({
   metamaskInstance,
@@ -25,10 +26,10 @@ function DeployContractPage({
 
   const {
     deployContract,
-    // transactionDeploymentHash,
+    transactionDeploymentHash,
     isDeploymentLoading,
     // contractAddress,
-    // transactionDeploymentUrl,
+    transactionDeploymentUrl,
   } = useContractDeployment(metamaskInstance, isMetamaskDefined, userAddress);
 
   return (
@@ -39,7 +40,20 @@ function DeployContractPage({
         </Typography>
 
         {isDeploymentLoading ? (
-          <Loader height="300px">{"Deploying your contract..."}</Loader>
+          <Loader height="300px">
+            {
+              <div>
+                <Typography> Deploying your Counter contract...</Typography>
+                {transactionDeploymentHash && (
+                  <AddressLabel
+                    address={transactionDeploymentHash}
+                    ariaLabel="transaction deployment"
+                    etherscanLink={transactionDeploymentUrl}
+                  />
+                )}
+              </div>
+            }
+          </Loader>
         ) : (
           <div>
             <CodeContainer>
