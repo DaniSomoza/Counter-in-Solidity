@@ -3,11 +3,12 @@ import { useNavigate } from "react-router";
 import CounterContractJSON from "../artifacts/src/contracts/Counter.sol/Counter.json";
 import { HOME_PATH } from "../routes/routes";
 
-function useContractDeployment(
+function useContractDeployment({
   metamaskInstance,
   isMetamaskDefined,
-  userAddress
-) {
+  userAddress,
+  getUserContractList,
+}) {
   const navigate = useNavigate();
   const [transactionDeploymentHash, setTransactionDeploymentHash] = useState();
   const [contractAddress, setContractAddress] = useState();
@@ -43,6 +44,7 @@ function useContractDeployment(
           console.log(newContractInstance.options.address); // instance with the new contract address
           setTransactionDeploymentHash();
           setContractAddress(newContractInstance.options.address);
+          getUserContractList();
           navigate(
             `${HOME_PATH}?contractAddress=${newContractInstance.options.address}`
           );

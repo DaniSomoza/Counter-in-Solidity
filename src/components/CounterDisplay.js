@@ -15,7 +15,7 @@ export default CounterDisplay;
 
 const CounterLabel = styled(Typography)(({ theme }) => ({
   display: "inline-block",
-  padding: "8px",
+  padding: "4px 8px",
   margin: "16px",
   backgroundColor: theme.palette.grey[800],
   borderRadius: "4px",

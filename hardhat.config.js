@@ -22,7 +22,6 @@ module.exports = {
       url: API_URL,
       accounts: [`0x${PRIVATE_KEY}`],
       network_id: RINKEBY_CHAIN_ID,
-      gas: 10000000,
     },
   },
   paths: {

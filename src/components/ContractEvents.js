@@ -7,8 +7,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 import { styled } from "@mui/system";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
 
 import AddressLabel from "./AddressLabel";
 
@@ -47,7 +49,20 @@ function ContractEvents({ pastEvents, newEvents }) {
                 />
               </TableCell>
               <TableCell align="center">
-                {event.returnValues.counter || <PendingValue />}
+                {!!event.returnValues.prevCounter ||
+                !!event.returnValues.newCounter ? (
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                  >
+                    <ValueLabel>{event.returnValues.prevCounter}</ValueLabel>{" "}
+                    <ArrowRightAltRoundedIcon />
+                    <ValueLabel>{event.returnValues.newCounter}</ValueLabel>
+                  </Stack>
+                ) : (
+                  <PendingValue />
+                )}
               </TableCell>
               <TableCell align="center">
                 <AddressLabel
@@ -104,3 +119,13 @@ const LabelByMethod = {
   decrement: <DecrementLabel>Decrement</DecrementLabel>,
   reset: <ResetLabel>Reset</ResetLabel>,
 };
+
+const ValueLabel = styled(Typography)(({ theme }) => ({
+  display: "inline-block",
+  padding: "2px 4px",
+  margin: "4px",
+  backgroundColor: theme.palette.grey[800],
+  borderRadius: "4px",
+  border: "1px solid",
+  borderColor: theme.palette.divider,
+}));

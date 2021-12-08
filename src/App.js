@@ -7,6 +7,9 @@ import DeployContractPage from "./routes/DeployContractPage";
 import { DEPLOY_CONTRACT_PATH, HOME_PATH } from "./routes/routes";
 import { Typography } from "@mui/material";
 import ContractPage from "./routes/ContractPage";
+import useUserContractList from "./hooks/useUserContractList";
+import { useState } from "react";
+import AppMenuDrawer from "./components/AppMenuDrawer";
 
 function App() {
   const {
@@ -17,6 +20,14 @@ function App() {
     connectToMetamask,
   } = useMetamask();
 
+  const { contracts, getUserContractList } = useUserContractList({
+    isMetamaskDefined,
+    metamaskInstance,
+    userAddress,
+  });
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <AppContainer>
       <Header
@@ -24,6 +35,13 @@ function App() {
         userAddress={userAddress}
         isMetamaskDefined={isMetamaskDefined}
         connectToMetamask={connectToMetamask}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+
+      <AppMenuDrawer
+        isOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        contracts={contracts}
       />
 
       <Typography component="h1" variant="h2" gutterBottom>
@@ -49,6 +67,7 @@ function App() {
               metamaskInstance={metamaskInstance}
               isMetamaskDefined={isMetamaskDefined}
               userAddress={userAddress}
+              getUserContractList={getUserContractList}
             />
           }
         />

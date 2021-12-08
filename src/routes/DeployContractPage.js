@@ -13,6 +13,7 @@ function DeployContractPage({
   metamaskInstance,
   isMetamaskDefined,
   userAddress,
+  getUserContractList,
 }) {
   const [contractCode, setContractCode] = useState();
 
@@ -30,7 +31,12 @@ function DeployContractPage({
     isDeploymentLoading,
     // contractAddress,
     transactionDeploymentUrl,
-  } = useContractDeployment(metamaskInstance, isMetamaskDefined, userAddress);
+  } = useContractDeployment({
+    metamaskInstance,
+    isMetamaskDefined,
+    userAddress,
+    getUserContractList,
+  });
 
   return (
     <main>
