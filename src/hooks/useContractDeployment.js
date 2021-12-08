@@ -35,9 +35,9 @@ function useContractDeployment(
           console.log(receipt.contractAddress); // contains the new contract address
           setContractAddress(receipt.contractAddress);
         })
-        .on("confirmation", function (confirmationNumber, receipt) {
-          console.log("confirmationNumber: ", confirmationNumber);
-        })
+        // .on("confirmation", function (confirmationNumber, receipt) {
+        //   console.log("confirmationNumber: ", confirmationNumber);
+        // })
         .then(function (newContractInstance) {
           console.log(newContractInstance.options.address); // instance with the new contract address
           setTransactionDeploymentHash();

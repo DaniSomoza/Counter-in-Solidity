@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/system";
 
 import contractFile from "../contracts/Counter.sol";
 import useContractDeployment from "../hooks/useContractDeployment";
 import Loader from "../components/Loader";
 import Button from "../components/Button";
-import { Typography } from "@mui/material";
 
 function DeployContractPage({
   metamaskInstance,

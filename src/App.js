@@ -64,6 +64,6 @@ export default App;
 
 const AppContainer = styled("div")({
   margin: "82px auto 0 auto",
-  maxWidth: "800px",
+  maxWidth: "900px",
   textAlign: "center",
 });

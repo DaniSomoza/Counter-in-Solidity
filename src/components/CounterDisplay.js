@@ -1,13 +1,24 @@
 import Typography from "@mui/material/Typography";
+import { styled } from "@mui/system";
 
 function CounterDisplay({ children }) {
   return (
     <div>
-      <Typography variant="h2" component="span">
+      <CounterLabel variant="h2" component="span">
         {children}
-      </Typography>
+      </CounterLabel>
     </div>
   );
 }
 
 export default CounterDisplay;
+
+const CounterLabel = styled(Typography)(({ theme }) => ({
+  display: "inline-block",
+  padding: "8px",
+  margin: "16px",
+  backgroundColor: theme.palette.grey[800],
+  borderRadius: "4px",
+  border: "1px solid",
+  borderColor: theme.palette.divider,
+}));

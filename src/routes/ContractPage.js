@@ -143,7 +143,7 @@ function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
                 {/* Current Counter State */}
                 <CounterDisplay>{counter}</CounterDisplay>
 
-                {/* Contract Functions */}
+                {/* Contract Methods */}
                 <div>
                   <Button onClick={decrementCounter}>Decrement</Button>
                   <Button onClick={resetCounter}>Reset</Button>
