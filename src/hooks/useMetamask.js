@@ -3,6 +3,9 @@ import Web3 from "web3";
 
 const RINKEBY_CHAIN_ID = "0x4";
 
+// TODO: use recommended initialization
+// see: https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider
+
 function useMetamask() {
   const [metamaskInstance, setMetamaskInstance] = useState();
   const [userAddress, setUserAddress] = useState();
@@ -15,7 +18,6 @@ function useMetamask() {
     // connect metamask
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
-      params: [{ chainId: RINKEBY_CHAIN_ID }],
     });
 
     // select correct chain

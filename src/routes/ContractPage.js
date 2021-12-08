@@ -15,6 +15,7 @@ import { DEPLOY_CONTRACT_PATH } from "./routes";
 import useCounterContract from "../hooks/useCounterContract";
 import CounterDisplay from "../components/CounterDisplay";
 import AddressLabel from "../components/AddressLabel";
+import ContractEvents from "../components/ContractEvents";
 
 function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,6 +30,8 @@ function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
 
   const {
     counter,
+    pastEvents,
+    newEvents,
     incrementCounter,
     decrementCounter,
     resetCounter,
@@ -61,6 +64,8 @@ function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
     }
   }, [contractAddressInput, metamaskInstance, setSearchParams]);
 
+  // TODO: ADD LOADING CONTRACT DATA
+
   // TODO: ADD ERROR IN THE TEXT FIELD
   // TODO: ADD ERROR IN THE SMART CONTRACT LOAD
   return (
@@ -91,59 +96,63 @@ function ContractPage({ metamaskInstance, isMetamaskDefined, userAddress }) {
           <div>Loading contract...</div>
         ) : (
           contractAddress && (
-            <StyledCounterContainer elevation={4}>
-              <Typography component={"h2"} variant={"h4"} gutterBottom>
-                Counter Contract
-              </Typography>
+            <>
+              <StyledCounterContainer elevation={4}>
+                <Typography component={"h2"} variant={"h4"} gutterBottom>
+                  Counter Contract
+                </Typography>
 
-              {/* Contract Address */}
-              <Typography component={"h3"} variant={"h6"} gutterBottom>
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  spacing={2}
-                  component="span"
-                >
-                  <AddressLabel address={contractAddress} />{" "}
-                  <Tooltip title="Show contract details on Etherscan">
-                    <IconButton
-                      color="primary"
-                      component="a"
-                      href={contractDetailsUrl}
-                      aria-label="Show contract details on Etherscan"
-                      target="_blank"
-                      rel="noopener"
-                      style={{ marginLeft: 0 }}
-                    >
-                      <IosShareIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Copy contract address to clipboard">
-                    <IconButton
-                      color="primary"
-                      aria-label="Copy contract address to clipboard"
-                      style={{ marginLeft: 0 }}
-                      onClick={() =>
-                        navigator.clipboard.writeText(contractAddress)
-                      }
-                    >
-                      <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </Stack>
-              </Typography>
+                {/* Contract Address */}
+                <Typography component={"h3"} variant={"h6"} gutterBottom>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={2}
+                    component="span"
+                  >
+                    <AddressLabel address={contractAddress} />{" "}
+                    <Tooltip title="Show contract details on Etherscan">
+                      <IconButton
+                        color="primary"
+                        component="a"
+                        href={contractDetailsUrl}
+                        aria-label="Show contract details on Etherscan"
+                        target="_blank"
+                        rel="noopener"
+                        style={{ marginLeft: 0 }}
+                      >
+                        <IosShareIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Copy contract address to clipboard">
+                      <IconButton
+                        color="primary"
+                        aria-label="Copy contract address to clipboard"
+                        style={{ marginLeft: 0 }}
+                        onClick={() =>
+                          navigator.clipboard.writeText(contractAddress)
+                        }
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Stack>
+                </Typography>
 
-              {/* Current Counter State */}
-              <CounterDisplay>{counter}</CounterDisplay>
+                {/* Current Counter State */}
+                <CounterDisplay>{counter}</CounterDisplay>
 
-              {/* Contract Functions */}
-              <div>
-                <Button onClick={decrementCounter}>Decrement</Button>
-                <Button onClick={resetCounter}>Reset</Button>
-                <Button onClick={incrementCounter}>Increment</Button>
-              </div>
-            </StyledCounterContainer>
+                {/* Contract Functions */}
+                <div>
+                  <Button onClick={decrementCounter}>Decrement</Button>
+                  <Button onClick={resetCounter}>Reset</Button>
+                  <Button onClick={incrementCounter}>Increment</Button>
+                </div>
+              </StyledCounterContainer>
+
+              <ContractEvents pastEvents={pastEvents} newEvents={newEvents} />
+            </>
           )
         )}
       </main>
