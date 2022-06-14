@@ -7,7 +7,7 @@ require("@nomiclabs/hardhat-ethers");
 
 const { API_URL, PRIVATE_KEY } = process.env;
 
-const RINKEBY_CHAIN_ID = 4;
+const RINKEBY_CHAIN_ID = "0x4";
 
 /**
  * @type import('hardhat/config').HardhatUserConfig

@@ -15,8 +15,8 @@ async function main() {
   //   "counterRegistry contract deployed to address:",
   //   counterRegistry.address
   // );
-  // const etherscanUrl = `${REACT_APP_ETHERSCAN_URL}/address/${counterRegistry.address}`;
-  // console.log("Etherscan url: ", etherscanUrl);
+  // const etherscanRegUrl = `${REACT_APP_ETHERSCAN_URL}/address/${counterRegistry.address}`;
+  // console.log("Etherscan url: ", etherscanRegUrl);
 
   // Start deployment, returning a promise that resolves to a contract object
   const counter = await Counter.deploy();

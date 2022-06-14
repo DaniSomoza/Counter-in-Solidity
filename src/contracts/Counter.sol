@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0
+
 pragma solidity ^0.8.0;
 
 abstract contract CounterRegistryInterface {
@@ -7,7 +9,6 @@ abstract contract CounterRegistryInterface {
 }
 
 contract Counter {
-    int256 public counter = 0;
     event CounterChanged(
         string eventType,
         int256 prevCounter,
@@ -15,25 +16,38 @@ contract Counter {
         address userAddress
     );
 
-    address counterRegistryAddress = 0x0eDD9d9CE0c51c707edb9CfA29501FD2FAb3dE66;
+    int256 public counter;
+
+    address counterRegistryAddress = 0x390AbC4148351a1570Da3B0E8F9c56AEa071Bf76;
     CounterRegistryInterface counterRegistry =
         CounterRegistryInterface(counterRegistryAddress);
 
     constructor() {
+        counter = 0;
         counterRegistry.registerNewContract(address(this), msg.sender);
     }
 
     function increment() public {
-        emit CounterChanged("increment", counter, ++counter, msg.sender);
+        int256 prevCounter = counter;
+        counter = counter + 1;
+        emit CounterChanged("increment", prevCounter, counter, msg.sender);
     }
 
     function decrement() public {
-        emit CounterChanged("decrement", counter, --counter, msg.sender);
+        int256 prevCounter = counter;
+        counter = counter - 1;
+        emit CounterChanged("decrement", prevCounter, counter, msg.sender);
     }
 
     function reset() public {
         int256 prevCounter = counter;
         counter = 0;
         emit CounterChanged("reset", prevCounter, counter, msg.sender);
+    }
+
+    function setCounter(int256 value) public {
+        int256 prevCounter = counter;
+        counter = value;
+        emit CounterChanged("setCounter", prevCounter, counter, msg.sender);
     }
 }
