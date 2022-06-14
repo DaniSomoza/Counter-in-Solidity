@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/Counter-in-Solidity/static/js/main.eee73c7e.chunk.js",
-    "main.js.map": "/Counter-in-Solidity/static/js/main.eee73c7e.chunk.js.map",
+    "main.js": "/Counter-in-Solidity/static/js/main.ae06aafb.chunk.js",
+    "main.js.map": "/Counter-in-Solidity/static/js/main.ae06aafb.chunk.js.map",
     "runtime-main.js": "/Counter-in-Solidity/static/js/runtime-main.b391b5e9.js",
     "runtime-main.js.map": "/Counter-in-Solidity/static/js/runtime-main.b391b5e9.js.map",
-    "static/js/2.ad906255.chunk.js": "/Counter-in-Solidity/static/js/2.ad906255.chunk.js",
-    "static/js/2.ad906255.chunk.js.map": "/Counter-in-Solidity/static/js/2.ad906255.chunk.js.map",
+    "static/js/2.7908fffd.chunk.js": "/Counter-in-Solidity/static/js/2.7908fffd.chunk.js",
+    "static/js/2.7908fffd.chunk.js.map": "/Counter-in-Solidity/static/js/2.7908fffd.chunk.js.map",
     "index.html": "/Counter-in-Solidity/index.html",
-    "static/js/2.ad906255.chunk.js.LICENSE.txt": "/Counter-in-Solidity/static/js/2.ad906255.chunk.js.LICENSE.txt",
-    "static/media/Counter.c242d09c.sol": "/Counter-in-Solidity/static/media/Counter.c242d09c.sol"
+    "static/js/2.7908fffd.chunk.js.LICENSE.txt": "/Counter-in-Solidity/static/js/2.7908fffd.chunk.js.LICENSE.txt",
+    "static/media/Counter.1adb5094.sol": "/Counter-in-Solidity/static/media/Counter.1adb5094.sol"
   },
   "entrypoints": [
     "static/js/runtime-main.b391b5e9.js",
-    "static/js/2.ad906255.chunk.js",
-    "static/js/main.eee73c7e.chunk.js"
+    "static/js/2.7908fffd.chunk.js",
+    "static/js/main.ae06aafb.chunk.js"
   ]
 }
